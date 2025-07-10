@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>MFAS BALIK ALINDOG PROGRAM (BAP)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="MARINALOGO.JPEG.png">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -88,89 +87,3 @@
     }
   </style>
 </head>
-<body>
-
-  <!-- Header with logo and title -->
-  <div class="header">
-    <img src="MARINALOGO.JPEG.png" alt="MARINA Logo">
-    <h1> Management, Financial and Administrative Service </h1>
-    <h1> MFAS BALIK ALINDOG PROGRAM (BAP) </h1>
-  </div>
-
-  <!-- Pot Money Display -->
-  <div class="pot-money">💰 Current Pot Money: <span id="pot">₱9,290</span></div>
-
-  <!-- Leaderboard Table -->
-  <table class="leaderboard" id="leaderboard">
-    <thead>
-      <tr>
-        <th>🏅 Rank</th>
-        <th>Participant #</th>
-        <th>Points</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Will be filled by JS -->
-    </tbody>
-  </table>
-
-  <footer>Keep pushing! 💪 The road to fitness is a journey, and you're all winners!</footer>
-
-  <!-- Script to populate leaderboard -->
-  <script>
-    const participants = [
-      { number: 1, points: 22.73333333 },
-      { number: 2, points: 23 },
-      { number: 3, points: 24 },
-      { number: 4, points: 30 },
-      { number: 5, points: 23 },
-      { number: 6, points: 24 },
-      { number: 7, points: 30 },
-      { number: 8, points: 23 },
-      { number: 9, points: 23 },
-      { number: 10, points: 23 },
-      { number: 11, points: 23 },
-      { number: 12, points: 23 },
-      { number: 13, points: 23 },
-      { number: 14, points: 23 },
-      { number: 15, points: 23 },
-      { number: 16, points: 23 },
-      { number: 17, points: 23 },
-      { number: 18, points: 23 },
-      { number: 19, points: 23 },
-      { number: 20, points: 23 },
-      { number: 21, points: 30 },
-      { number: 22, points: 61 },
-      { number: 23, points: 55 },
-      { number: 24, points: 51 },
-      { number: 25, points: 41 },
-      { number: 26, points: 42 },
-      { number: 27, points: 33 },      
-      { number: 28, points: 44 },
-      { number: 29, points: 43 },
-      { number: 30, points: 30 },
-      { number: 31, points: 40 },
-      { number: 32, points: 30 },      
-      { number: 33, points: 45 },
-      { number: 34, points: 46 },
-      { number: 35, points: 47 },
-    ];
-
-    const sorted = participants.sort((a, b) => b.points - a.points);
-    const tbody = document.querySelector('#leaderboard tbody');
-
-    sorted.forEach((p, index) => {
-      const tr = document.createElement('tr');
-      if (index === 0) tr.classList.add('highlight'); // highlight top 1
-
-      tr.innerHTML = `
-        <td>${index + 1}</td>
-        <td>${p.number}</td>
-        <td>${p.points}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  </script>
-
-</body>
-</html>
