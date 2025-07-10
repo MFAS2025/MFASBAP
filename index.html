@@ -5,6 +5,7 @@
   <title>MFAS BALIK ALINDOG PROGRAM (BAP)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="MARINALOGO.JPEG.png">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -16,7 +17,7 @@
 
     .header {
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
     .header img {
@@ -24,24 +25,34 @@
       margin-bottom: 10px;
     }
 
-    .header h1 {
-      margin: 0;
+    .header .mfas-name {
+      font-weight: bold;
+      font-size: 1.2em;
       color: #0c3c78;
-      font-size: 1.8em;
+    }
+
+    .header h1 {
+      margin: 5px 0 0 0;
+      font-size: 1.6em;
+      color: #0c3c78;
     }
 
     .pot-money {
       text-align: center;
       font-size: 2em;
       font-weight: bold;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .table-container {
+      max-width: 900px;
+      margin: 0 auto 40px;
     }
 
     .leaderboard {
-      max-width: 700px;
-      margin: 0 auto;
-      border-collapse: collapse;
       width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
     }
 
     .leaderboard th, .leaderboard td {
@@ -64,6 +75,12 @@
       font-weight: bold;
     }
 
+    h2 {
+      text-align: center;
+      color: #004aad;
+      margin-bottom: 10px;
+    }
+
     footer {
       text-align: center;
       margin-top: 40px;
@@ -72,89 +89,105 @@
     }
 
     @media (max-width: 500px) {
-      .header h1 {
-        font-size: 1.5em;
-      }
-
       .header img {
         height: 60px;
+      }
+
+      .header .mfas-name {
+        font-size: 1em;
+      }
+
+      .header h1 {
+        font-size: 1.3em;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header with logo above title -->
   <div class="header">
     <img src="MARINALOGO.JPEG.png" alt="MARINA Logo">
+    <div class="mfas-name">Management, Financial and Administrative Service</div>
     <h1>🏋️ MFAS BALIK ALINDOG PROGRAM (BAP) 🏋️</h1>
   </div>
 
-  <!-- Pot Money Display -->
   <div class="pot-money">💰 Current Pot Money: <span id="pot">₱9,290</span></div>
 
-  <!-- Leaderboard Table -->
-  <table class="leaderboard" id="leaderboard">
-    <thead>
-      <tr>
-        <th>🏅 Rank</th>
-        <th>Participant #</th>
-        <th>Points</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Will be filled by JS -->
-    </tbody>
-  </table>
+  <div class="table-container">
+    <h2>🏆 Male Participants</h2>
+    <table class="leaderboard" id="male-leaderboard">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Participant #</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h2>🏆 Female Participants</h2>
+    <table class="leaderboard" id="female-leaderboard">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Participant #</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
 
   <footer>Keep pushing! 💪 The road to fitness is a journey, and you're all winners!</footer>
 
-  <!-- Script to populate leaderboard -->
   <script>
-    const participants = [
-      { number: 1, points: 22.73333333 },
-      { number: 2, points: 23 },
-      { number: 3, points: 24 },
-      { number: 4, points: 30 },
-      { number: 5, points: 23 },
-      { number: 6, points: 24 },
-      { number: 7, points: 30 },
-      { number: 8, points: 23 },
-      { number: 9, points: 23 },
-      { number: 10, points: 23 },
-      { number: 11, points: 23 },
-      { number: 12, points: 23 },
-      { number: 13, points: 23 },
-      { number: 14, points: 23 },
-      { number: 15, points: 23 },
-      { number: 16, points: 23 },
-      { number: 17, points: 23 },
-      { number: 18, points: 23 },
-      { number: 19, points: 23 },
-      { number: 20, points: 23 },
-      { number: 21, points: 30 },
-      { number: 22, points: 50 },
-      { number: 23, points: 50 },
-      { number: 24, points: 50 },
-      { number: 25, points: 40 },
-      { number: 26, points: 40 },
-      { number: 27, points: 30 }
+    const maleParticipants = [
+      { number: 1, points: 22.73 },
+      { number: 2, points: 30 },
+      { number: 3, points: 40 },
+      { number: 4, points: 50 },
+      { number: 5, points: 24 }
     ];
 
-    const sorted = participants.sort((a, b) => b.points - a.points);
-    const tbody = document.querySelector('#leaderboard tbody');
+    const femaleParticipants = [
+      { number: 6, points: 23 },
+      { number: 7, points: 30 },
+      { number: 8, points: 50 },
+      { number: 9, points: 40 },
+      { number: 10, points: 24 }
+    ];
 
-    sorted.forEach((p, index) => {
-      const tr = document.createElement('tr');
-      if (index === 0) tr.classList.add('highlight'); // highlight top 1
+    function populateTable(participants, tableId) {
+      const sorted = participants.sort((a, b) => b.points - a.points);
+      const tbody = document.querySelector(`#${tableId} tbody`);
 
-      tr.innerHTML = `
-        <td>${index + 1}</td>
-        <td>${p.number}</td>
-        <td>${p.points}</td>
-      `;
-      tbody.appendChild(tr);
-    });
+      sorted.forEach((p, index) => {
+        const tr = document.createElement('tr');
+        if (index === 0) {
+          tr.classList.add('highlight');
+          launchConfetti(); // Confetti for top 1
+        }
+
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${p.number}</td>
+          <td>${p.points}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function launchConfetti() {
+      confetti({
+        particleCount: 150,
+        spread: 90,
+        origin: { y: 0.6 }
+      });
+    }
+
+    populateTable(maleParticipants, 'male-leaderboard');
+    populateTable(femaleParticipants, 'female-leaderboard');
   </script>
 
 </body>
