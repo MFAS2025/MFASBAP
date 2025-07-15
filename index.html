@@ -59,20 +59,31 @@
       border: 1px solid #ccc;
       padding: 10px;
       text-align: center;
+      background-color: rgba(255, 255, 255, 0.85); /* Make text readable over background */
     }
 
     .leaderboard th {
-      background-color: #004aad;
+      background-color: rgba(0, 74, 173, 0.85);
       color: white;
     }
 
-    .leaderboard tr:nth-child(even) {
-      background-color: #f2f9ff;
+    .leaderboard tr:nth-child(even) td {
+      background-color: rgba(242, 249, 255, 0.85);
     }
 
     .highlight {
       background-color: #ffeb3b !important;
       font-weight: bold;
+    }
+
+    #male-leaderboard {
+      background: url('1.png') no-repeat center center;
+      background-size: cover;
+    }
+
+    #female-leaderboard {
+      background: url('2.png') no-repeat center center;
+      background-size: cover;
     }
 
     h2 {
@@ -108,7 +119,7 @@
   <div class="header">
     <img src="MARINALOGO.JPEG.png" alt="MARINA Logo">
     <div class="mfas-name">Management, Financial and Administrative Service</div>
-    <h1> MFAS BALIK ALINDOG PROGRAM (BAP) </h1>
+    <h1>MFAS BALIK ALINDOG PROGRAM (BAP)</h1>
   </div>
 
   <div class="pot-money">💰 Current Pot Money: <span id="pot">₱9,290</span></div>
